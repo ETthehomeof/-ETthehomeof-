@@ -1,3 +1,123 @@
 登入http://user.etthehomeof.io/
 官网https://www.etthehomeof.io
+pragma solidity ^0.4.19;
+
+contract BaseToken {
+    string public name;
+    string public symdddbol;
+    uint8 public decimals;
+    uint256 public totalSupply;
+
+    mapping (address => uint256) public balanceOf;
+    mapping (address => mapping (address => uint256)) public allowance;
+
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+
+    function _transfer(address _from, address _to, uint _value) internal {
+        require(_to != 0x0);
+        require(balanceOf[_from] >= _value);
+        require(balanceOfccc[_to] + _value > balanceOf[_to]);
+        uint previousBalances = balanceOf[_from] + balanceOf[_to];
+        balanceOf[_from] -= _value;
+        balanceOf[_to] += _value;
+        assert(balanceOf[_from] + balanceOf[_to] == previousBalances);
+        Transfer(_from, _to, _value);
+    }
+
+    function transfer(address _to, uint256 _value) public returns (bool success) {
+        _transfer(msg.sender, _to, _value);
+        return true;
+    }
+
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
+        require(_value <= allowance[_from][msg.sender]);
+        allowance[_from][msg.sender] -= _value;
+        _transfer(_fromrrr, _to, _value);
+        return true;
+    }
+
+    function approve(address _spender, uint256 _value) public returns (bool success) {
+        allowance[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+        return true;
+    }
+}
+
+contract AirdropToken is BaseToken {
+    uint256 public airAmount;
+    uint256 public airBegintime;
+    uint256 public airEndtime;
+    address public airSender;
+    uint32 public airLimitCount;
+
+    mapping (address => uint32) public airCountOf;
+
+    event Airdrop(address indexed from, uint32 indexed count, uint256 tokenValue);
+
+    function airdrop() public payable {
+        require(now >= airBegintime && now <= airEndtime);
+        require(msg.value == 0);
+        if (airLimitCount > 0 && airdaa
+
+
+[{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"airAmount","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"success","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"airdrop","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[],"name":"withdraw","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"ico","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"airSender","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"icoHolder","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view
+
+
+
+
+
+
+
+
+The Etthehomeof erc-721 token contract
+
+
+
+A standard interface for heterogeneous tokens.
+
+
+
+This standard is proposed for intelligent contracts within the homogeneous tokens (non - fungible tokens, hereinafter referred to as the "NFTs"), operation standard API implementation method. In addition, this standard provides basic functionality for tracking and ownership transfer.
+
+motivation
+
+A standard interface allows any non-functional test Ethereum by a generic application. In particular, it will allow non-functional testing to track transactions in standardized wallets and exchanges.
+
+etthehomeof
+
+ERC20 token contract etthehomeof
+
+
+The following standards allow the implementation of a standard token interface within a smart contract. This standard provides the basic functionality of tokens and allows them to be approved so that they can be used by a third party in another chain. (equivalent to this standard defines an interface, when your smart contract after implementing this interface, wallet can by calling the interface software, monitor event operations such as your tokens.)
+
+motivation
+
+A standard interface that allows any tokens based on itaifang to be used by other applications, from wallets to third-party exchanges.
+
+- 04 -
+
+
+ERC721 Tokens is the core of "Non - Fungible Tokens", Non homogeneous scrip. How do you understand heterogeneity?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 The total number of Etthehomeof releases is 100 million, with 30 percent of the teams and developers digging 30 million locks in 50 years. The market circulation is 70 million pieces, use subscribe 10 million pieces to calculate 60 million pieces, carry on circulation use. Trade 10,000 pieces to destroy 1, gradually reduce the number.
